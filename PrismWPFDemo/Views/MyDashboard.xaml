@@ -1,0 +1,64 @@
+﻿<Window x:Class="PrismWPFDemo.Views.MyDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrismWPFDemo.Views"
+        mc:Ignorable="d"
+        Title="MyDashboard" Height="450" Width="800">
+    <Window.Resources>
+        <local:GenderConverter x:Key="genderConverterKey"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <Label Content="Details Form" HorizontalAlignment="Center" Margin="0 10 0 10" FontWeight="Bold" FontSize="14"/>
+            <Label Content="First Name :" Width="250"/>
+            <TextBox x:Name="TxtFirstName" Width="250" Text="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            <Label Content="Last Name :" Width="250"/>
+            <TextBox x:Name="TxtLastName" Width="250" Text="{Binding LastName}"/>
+            <Label Content="Gender :" Width="250"/>
+            <RadioButton Content="Male" GroupName="Gender" Width="250" Name="RbGenMale"
+                         IsChecked="{Binding Gender, Converter={StaticResource ResourceKey=genderConverterKey}, ConverterParameter=1}"/>
+            <RadioButton Content="Female" GroupName="Gender" Width="250" Name="RBGenFemale"
+                         IsChecked="{Binding Gender, Converter={StaticResource ResourceKey=genderConverterKey}, ConverterParameter=2}"/>
+            <Label Content="Country :" Width="250"/>
+            <ComboBox Width="250" Name="CbCountry" ItemsSource="{Binding Country}" SelectedValue="{Binding SelectedCountry}">
+            </ComboBox>
+            <Label Content="State : " Width="250"/>
+            <ComboBox Width="250" ItemsSource="{Binding State}" SelectedValue="{Binding SelectedState}"/>
+            <Label Content="City :" Width="250" Name="CbCity"/>
+            <ComboBox Width="250" ItemsSource="{Binding City}" SelectedValue="{Binding SelectedCity}">
+            </ComboBox>
+            <Label Content="Address :" Width="250"/>
+            <TextBox
+              Name="TxtAddress"
+              TextWrapping="Wrap"
+              AcceptsReturn="True"
+              MaxLines="3"
+              Width="250"
+              VerticalScrollBarVisibility="Visible"
+                Text="{Binding Address}"
+            />
+            <Button Content="Save" Width="250" Margin="0 15 0 0" Command="{Binding CommandLoad}"/>
+            <Button Content="Clear" Width="250" Margin="0 15 0 0" Command="{Binding CommandClear}"/>
+        </StackPanel>
+        <DataGrid Grid.Column="1" ItemsSource="{Binding UsersList}" AutoGenerateColumns="False" HorizontalAlignment="Stretch" 
+    HorizontalContentAlignment="Stretch" 
+   ColumnWidth="*" AlternatingRowBackground="LightPink" GridLinesVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Gender" Binding="{Binding GenderString}"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding CountryString}"/>
+                <DataGridTextColumn Header="State" Binding="{Binding StateString}"/>
+                <DataGridTextColumn Header="City" Binding="{Binding CityString}"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

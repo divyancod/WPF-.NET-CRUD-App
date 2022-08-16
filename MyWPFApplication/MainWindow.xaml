@@ -1,0 +1,25 @@
+﻿<Window x:Class="MyWPFApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyWPFApplication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="LabelDisplay" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="OuterButton"    
+                Height="70"    
+                Width="350"    
+                PreviewMouseDoubleClick="OuterButton_Click">
+            <Button x:Name="InnerButton"    
+                    Content="Inner Button"    
+                    Height="35"    
+                    Width="175"     
+                    PreviewMouseDoubleClick="InnerButton_Click" >
+            </Button>
+        </Button>
+
+    </Grid>
+
+</Window>
