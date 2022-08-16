@@ -14,5 +14,5 @@ For my learning on .NET, WPF, XAML and MVVM.
 - C#
 - .NET Framework - WPF
 - ADO.NET
-- Prism Framwork
+- Prism Framework
 - Database - SQL Server
